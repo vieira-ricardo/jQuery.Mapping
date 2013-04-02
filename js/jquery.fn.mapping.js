@@ -11,7 +11,7 @@
 
 (function () {
 
-    "use strict";
+    "use strict";i
         
     $.fn.mapping = function (options) {
 
@@ -73,7 +73,7 @@
             options = settings;
             
         var styles = {
-            loading_image: "../Scripts/Images/loading_icon.gif"        
+            loading_image: "../scripts/images/loading_icon.gif"        
         };        
         
         /// get the numbers of days in a month
