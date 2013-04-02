@@ -286,7 +286,7 @@
 
 .spanMonth {
     float: right;
-    background-image: url(../Images/expand.png);
+    background-image: url(../images/expand.png);
     padding-left: 15px;
     display: inline-block;
     background-repeat: no-repeat;
@@ -338,7 +338,7 @@
 }
 
 .mapFilter {
-    background: url(../Images/loading_icon.gif) no-repeat top left;
+    background: url(../images/loading_icon.gif) no-repeat top left;
     display: inline-block;
     -moz-background-size: contain;
     -o-background-size: contain;
@@ -350,7 +350,7 @@
 
 .mapZoomOn {
     padding-left: 20px;
-    background: url(../Images/zoom.png) no-repeat top left;
+    background: url(../images/zoom.png) no-repeat top left;
     display: inline-block;
     height: 20px;
     margin-top: 12px;
@@ -361,7 +361,7 @@
 
 .mapZoomOff {
     padding-left: 25px;
-    background: url(../Images/zoomout.png) no-repeat top left;
+    background: url(../images/zoomout.png) no-repeat top left;
     display: inline-block;
     height: 20px;
     margin-top: 12px;
@@ -372,7 +372,7 @@
 
 .chartBarIcon {
     padding-left: 25px;
-    background: url(../Images/chart_bar.png) no-repeat top left;
+    background: url(../images/chart_bar.png) no-repeat top left;
     display: inline-block;
     height: 20px;
     margin-top: 12px;
@@ -382,7 +382,7 @@
 
 .searchBarIcon {
     padding-left: 25px;
-    background: url(../Images/search.png) no-repeat top left;
+    background: url(../images/search.png) no-repeat top left;
     display: inline-block;
     height: 20px;
     margin-top: 12px;
@@ -392,7 +392,7 @@
 
 .facebookBarIcon {
     padding-left: 25px;
-    background: url(../Images/facebook.png) no-repeat top left;
+    background: url(../images/facebook.png) no-repeat top left;
     display: inline-block;
     height: 20px;
     margin-top: 12px;
@@ -409,7 +409,7 @@
 
 .mapYearGroup {
     padding-left: 11px;
-    background: url(../Images/lessgroup.png) no-repeat top left;
+    background: url(../images/lessgroup.png) no-repeat top left;
     display: inline-block;
     height: 7px;
     font-size: 0;
@@ -419,7 +419,7 @@
 
 .mapYearUnGroup {
     padding-left: 11px;
-    background: url(../Images/plusgroup.png) no-repeat top left;
+    background: url(../images/plusgroup.png) no-repeat top left;
     display: inline-block;
     height: 7px;
     font-size: 0;
