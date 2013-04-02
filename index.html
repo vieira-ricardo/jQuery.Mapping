@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en-au">
+    <head>
+        <title>jQuery.Gantt</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" >
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+		<style type="text/css">
+			body {
+				font-family: Helvetica, Arial, sans-serif;
+				font-size: 13px;
+				padding: 0 0 50px 0;
+			}
+			.contain {
+				width: 800px;
+				margin: 0 auto;
+			}
+			h1 {
+				margin: 40px 0 20px 0;
+			}
+			h2 {
+				font-size: 1.5em;
+				padding-bottom: 3px;
+				border-bottom: 1px solid #DDD;
+				margin-top: 50px;
+				margin-bottom: 25px;
+			}
+			table th:first-child {
+				width: 150px;
+			}
+		</style>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery.fn.mapping.min.js"></script>
+		<script type="text/javascript" src="js/jquery.fn.mappingEN-lang.min.js"></script>		
+
+		<script type="text/javascript">
+		$(function () {		
+		
+			var dataSource = [{
+					id: 1,
+					desc_id: 1,
+					name: "David",
+					desc: "Sick",
+					values: [{
+						date: "20/02/2013",
+						customLabel: "D",
+						customTitle: "David is Sick",
+						customClass: "mapBlue",
+						dateid: "1"
+					},
+					{
+						date: "21/02/2013",
+						customLabel: "D",
+						customTitle: "David is Sick",
+						customClass: "mapBlue",
+						dateid: "1"
+					}]
+				},
+				{
+					id: 2,
+					desc_id: 1,
+					name: "Richard",
+					desc: "Holidays",
+					values: [{
+						date: "15-04-2013",
+						customLabel: "D",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "2"
+					}]
+				},
+				{
+					id: 3,
+					desc_id: 2,
+					name: "Pedro",
+					desc: "Holidays",
+					values: [{
+						date: "17-04-2013",
+						customLabel: "M",
+						customTitle: "Morning Only",
+						customClass: "mapBlue",
+						dateid: "3"
+					}]
+				},
+				{
+					id: 3,
+					desc_id: 1,
+					name: "Tina",
+					desc: "Shopping",
+					values: [{
+						date: "17-04-2013",
+						customLabel: "D",
+						customTitle: "I wanna this too",
+						customClass: "mapBlue",
+						dateid: "3"
+					}]
+				},
+				{
+					id: 3,
+					desc_id: 3,
+					name: "Ricardo",
+					desc: "Férias",
+					values: [{
+						date: "11-11-2013",
+						customLabel: "T",
+						customTitle: "Example",
+						customClass: "mapBlue",
+						dateid: "3"
+					}]
+				},
+				{
+					id: 4,
+					desc_id: 3,
+					name: "Lu",
+					desc: "Holidays",
+					values: [{
+						date: "16-07-2013",
+						customLabel: "D",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "3"
+					}]
+				},
+				{
+					id: 5,
+					desc_id: 4,
+					name: "Burt",
+					desc: "Away",
+					values: [{
+						date: "13-08-2013",
+						customLabel: "H",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "3"
+					},
+					{
+						date: "20-08-2013",
+						customLabel: "H",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "3"
+					},
+					{
+						date: "08-08-2013",
+						customLabel: "M",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "3"
+					}]
+				},
+				{
+					id: 6,
+					desc_id: 3,
+					name: "Anna",
+					desc: "Holidays",
+					values: [{
+						date: "18-01-2013",
+						customLabel: "D",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "3"
+					}]
+				},
+				{
+					id: 7,
+					desc_id: 3,
+					name: "Ju",
+					desc: "Sick",
+					values: [{
+						date: "05-03-2013",
+						customLabel: "M",
+						customTitle: "Ju is Sick",
+						customClass: "mapBlue",
+						dateid: "4"
+					},
+					{
+						date: "06-03-2013",
+						customLabel: "D",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "5"
+					},
+					{
+						date: "07-03-2013",
+						customLabel: "D",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "6"
+					},
+					 {
+						 date: "08-03-2013",
+						 customLabel: "D",
+						 customTitle: "",
+						 customClass: "mapRed",
+						 dateid: "6"
+					 },
+					 {
+						 date: "12-03-2013",
+						 customLabel: "D",
+						 customTitle: "",
+						 customClass: "mapBlue",
+						 dateid: "6"
+					 },
+					{
+						date: "13-03-2013",
+						customLabel: "D",
+						customTitle: "",
+						customClass: "mapBlue",
+						dateid: "6"
+					}]
+				}];
+				
+				var dataHolidays = [{
+					date: "08-02-2013",
+					title: "Holiday",
+					dow: "F"
+				},
+				{
+					date: "25-12-2013",
+					title: "Christmas",
+					dow: "F"
+				}];
+
+			 $("#demo").mapping({
+				source: dataSource,
+				holidays: dataHolidays,            
+				year: 2013,
+				multiSelect: false,            
+				groupingView: {
+					groupCollapse: false,
+					sort: [{
+						groups: ["name", "desc"],
+						order: "desc"
+					}]
+				},
+				group1Text: "Collaborator",
+				group2Text: "Vacations",		
+				headerYear: "Current Year:",
+				headerTitle: "",
+				errorText: "No Data",
+				filter: ["filter", "graph"],            
+				scale: "month",
+				sumText: ["Day","Days"]
+			});
+		});
+	</script>
+    </head>
+    <body>
+
+		<div class="contain">
+			<h1>
+				jQuery.Mapping<small> &mdash; Draw Maps for companies, easy tracking system </small></h1>
+
+			<h2>Created By </h2>
+			<ul>
+				<li>
+					<strong><a href="http://mbielanczuk.com/" target="_blank">Ricardo Vieira </a></strong> - Plugin created for all community. All the code can be used in other projects. With this plugin you can for example, track all the vacations
+
+of members in a company easily, or expenses or whatever you need. See the example for more information.</li>
+			<li>Informations:
+			  <ul>
+			    <li><strong>LINKED IN</strong> - http://www.linkedin.com/profile/view?id=231336538</li>
+		      	<li><strong>BLOG</strong> - https://rvieiraweb.wordpress.com/</li>
+			  </ul>
+			</li>
+			</ul>
+
+	    	<h2>
+	    		Example
+	    	</h2>
+				
+			 <div id="demo"> </div>    
+
+
+
+			<h2>
+				Mapping Configuration
+			</h2>
+
+
+	<pre class="prettyprint">
+	$("#demo").mapping({
+		source: dataSource,
+		holidays: dataHolidays,            
+		year: 2013,
+		multiSelect: false,            
+		groupingView: {
+			groupCollapse: false,
+			sort: [{
+				groups: ["name", "desc"],
+				order: "desc"
+			}]
+		},
+		group1Text: "Collaborator",
+		group2Text: "Vacations",		
+		headerYear: "Current Year:",
+		headerTitle: "",
+		errorText: "No Data",
+		filter: ["filter", "graph"],            
+		scale: "month",
+		sumText: ["Day","Days"]
+	});</pre>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th width="173">
+							Parameter
+						</th>
+						<th width="317">
+							Default
+						</th>
+						<th width="294">
+							Accepts Type
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<code>source</code>
+						</td>
+						<td>
+							null
+						</td>
+						<td>
+							JSON</td>
+					</tr>
+					<tr>
+						<td>
+							<code>holidays</code>
+						</td>
+						<td>
+							null</td>
+						<td>
+						JSON</td>
+					</tr>
+					<tr>
+					  <td><code>year</code></td>
+					  <td>current year </td>
+					  <td>Integer</td>
+				  </tr>
+					<tr>
+					  <td> <code>group1Text</code> </td>
+					  <td>&quot;&quot;</td>
+					  <td>String</td>
+				  </tr>
+					<tr>
+                      <td> <code>group2Text</code> </td>
+                      <td>&quot;&quot;</td>
+                      <td>String</td>
+				  </tr>
+					<tr>
+                      <td> <code>headerTitle</code></td>
+                      <td>&quot;&quot;</td>
+                      <td>String</td>
+				  </tr>
+					<tr>
+					  <td><code>holidaysTitle</code></td>
+					  <td>&quot;&quot;</td>
+					  <td>String</td>
+				  </tr>
+					<tr>
+					  <td><code>filter</code></td>
+					  <td> [&quot;filter&quot;,&nbsp;&quot;graph&quot;, &quot;facebook&quot;] </td>
+					  <td>Array</td>
+				  </tr>
+					<tr>
+					  <td>  <code>multiSelect </code> </td>
+					  <td>false</td>
+					  <td>Boolean</td>
+				  </tr>
+					<tr>
+					  <td>  <code>sumText </code> </td>
+					  <td> [&quot;Day&quot;,&quot;Days&quot;] </td>
+					  <td>Array</td>
+				  </tr>
+					<tr>
+					  <td> <code>scale</code> </td>
+					  <td>&quot;month&quot;</td>
+					  <td>String</td>
+				  </tr>
+					<tr>
+					  <td><code> groupingView </code></td>
+					  <td> groupCollapse: false, sorting: desc </td>
+					  <td>Array</td>
+				  </tr>
+					<tr>
+					  <td> <code>errorText </code></td>
+					  <td> &quot;Source&nbsp;not&nbsp;available&quot; </td>
+					  <td>String</td>
+				  </tr>
+					<tr>
+					  <td> <code>waitText </code></td>
+					  <td> &quot;Loading,&nbsp;Please&nbsp;Wait..&quot; </td>
+					  <td>String</td>
+				  </tr>
+					<tr>
+					  <td><code>events</code></td>
+					  <td>Automatic</td>
+					  <td>Automatic</td>
+				  </tr>
+					<tr>
+						<td>
+							<code>waitText</code>
+						</td>
+						<td>
+							"Please Wait..."
+						</td>
+						<td>
+							String
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+<h2>
+				Language Configuration
+		  </h2>
+
+		<pre class="prettyprint">
+  /*
+  * English translation for Jquery Mapping
+  */
+  (function ($) {
+  	$.fn.mapping.dates = {
+	  buttons: ["Annual", "Monthly", "Back"],
+	  months: ['January', 'February', 'March', 'April', 'May', 'June', 'july', 'August', 'September', 'October', 'November', 'December'],
+	  monthsDow: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Set", "Oct", "Nov", "Dec"],
+	  weeks: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+	  weeksDow: ["Sun", "Sat"],
+	  filterTitle: "Filter",
+	  filterList: "List All",
+	  filterBtMove: "Move All",
+	  filterBtGo: "Filter",
+	  filterBtClose: "Close",
+	};
+  }(jQuery));
+		</pre>
+
+			<table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="117"> Parameter </th>
+                  <th width="393"> Default </th>
+                  <th width="274"> Accepts Type </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code> buttons</code></td>
+                  <td> [&quot;Annual&quot;, &quot;Monthly&quot;, &quot;Back&quot;] </td>
+                  <td> Array</td>
+                </tr>
+                <tr>
+                  <td> <code>months</code></td>
+                  <td> [&#39;January',&nbsp;&#39;February&#39;, &#39;March&#39;, &#39;April&#39;, &#39;May&#39;, &#39;June&#39;, &#39;july&#39;, &#39;August&#39;, &#39;September&#39;, &#39;October&#39;, &#39;November&#39;, &#39;December&#39; ] </td>
+                  <td> Array</td>
+                </tr>
+                <tr>
+                  <td><code> monthsDow</code> </td>
+                  <td> [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Set&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;] </td>
+                  <td>Array</td>
+                </tr>
+                <tr>
+                  <td><code> weeks</code></td>
+                  <td> [&quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;] </td>
+                  <td>Array</td>
+                </tr>
+                <tr>
+                  <td><code> weeksDow</code></td>
+                  <td> [&quot;Sun&quot;,&quot;Sat&quot;] </td>
+                  <td>Array</td>
+                </tr>
+                <tr>
+                  <td> <code>filterTitle</code></td>
+                  <td> &quot;Filter&quot; </td>
+                  <td>String</td>
+                </tr>
+                <tr>
+                  <td><code> filterList</code></td>
+                  <td> &quot;List&nbsp;All&quot; </td>
+                  <td>String</td>
+                </tr>
+                <tr>
+                  <td> <code>filterBtMove </code></td>
+                  <td>&quot;Move&nbsp;All&quot; </td>
+                  <td>String</td>
+                </tr>
+                <tr>
+                  <td><code>filterBtGo </code></td>
+                  <td> &quot;Filter&quot; </td>
+                  <td>String</td>
+                </tr>
+                <tr>
+                  <td> <code>filterBtClose </code></td>
+                  <td>&quot;Close&quot; </td>
+                  <td>String</td>
+                </tr>
+              </tbody>
+            </table>
+			
+
+			<h2>Source Configuration </h2>
+			<pre class="prettyprint">
+   source: [{
+	  id: 1,
+	  desc_id: 1,
+	  name: "David",
+	  desc: "Sick",
+	  values: [ ... ]
+   }]</pre>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="71"> Parameter </th>
+                  <th width="113">Default</th>
+                  <th width="139"> Accepts Type </th>
+                  <th width="379"> Meaning </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> <code>id</code></td>
+                  <td>null</td>
+                  <td> Integer </td>
+                  <td> ID of first column </td>
+                </tr>
+                <tr>
+                  <td> <span class="prettyprint"><code>desc_id</code></span></td>
+                  <td>null</td>
+                  <td> Integer</td>
+                  <td> ID of second column</td>
+                </tr>
+                <tr>
+                  <td> <span class="prettyprint"><code>name</code></span></td>
+                  <td>null</td>
+                  <td> String </td>
+                  <td> Text that appears on first column</td>
+                </tr>
+                <tr>
+                  <td> <span class="prettyprint"><code>desc</code></span></td>
+                  <td>null</td>
+                  <td> String </td>
+                  <td> Text that appears on second column</td>
+                </tr>
+                <tr>
+                  <td> <span class="prettyprint"><code>values</code></span></td>
+                  <td>null</td>
+                  <td> Array</td>
+                  <td> Collection of dates  for mapp items. See next table.</td>
+                </tr>
+              </tbody>
+            </table>        
+            <h2>
+				Value Configuration
+			</h2>
+
+<pre class="prettyprint">
+   values: [{
+        date: "20/02/2013",
+        customLabel: "D",
+        customTitle: "David is Sick",
+        customClass: "mapBlue",
+        dateid: "1"
+   }]
+</pre>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th width="71"> Parameter </th>
+      <th width="113">Default</th>
+      <th width="139"> Accepts Type </th>
+      <th width="379"> Meaning </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> <span class="prettyprint"><code>date</code></span></td>
+      <td>null</td>
+      <td> String (Date) </td>
+      <td> Date of occurrence. format DD-MM-YYYY or DD/MM/YYYY </td>
+    </tr>
+    <tr>
+      <td> <span class="prettyprint"><code>customLabel</code></span></td>
+      <td>null</td>
+      <td> String </td>
+      <td> Text that appears on date </td>
+    </tr>
+    <tr>
+      <td> <span class="prettyprint"><code>customTitle</code></span></td>
+      <td>null</td>
+      <td> String </td>
+      <td> Text that appears on title when mouse hover </td>
+    </tr>
+    <tr>
+      <td> <span class="prettyprint"><code>customClass</code></span></td>
+      <td>null</td>
+      <td> String </td>
+      <td> Class applied to occurrence</td>
+    </tr>
+    <tr>
+      <td> <span class="prettyprint"><code>dateid</code></span></td>
+      <td>null</td>
+      <td> String</td>
+      <td> ID of fate occurrence</td>
+    </tr>
+  </tbody>
+</table>
+	<h2>Holidays Configuration </h2>
+	<pre class="prettyprint">
+   holidays:  [{
+        date: "08-02-2013",
+        title: "Nacional Holiday",
+        dow: "H"    
+   }]</pre>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th width="71"> Parameter </th>
+          <th width="113">Default</th>
+          <th width="139"> Accepts Type </th>
+          <th width="379"> Meaning </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> <span class="prettyprint"><code>date</code></span></td>
+          <td>null</td>
+          <td> String (Date) </td>
+          <td> Date of holiday. format DD-MM-YYYY or DD/MM/YYYY </td>
+        </tr>
+        <tr>
+          <td> <span class="prettyprint"><code>title</code></span></td>
+          <td>null</td>
+          <td> String </td>
+          <td> Text that appears on holiday</td>
+        </tr>
+        <tr>
+          <td> <span class="prettyprint"><code>dow</code></span></td>
+          <td>null</td>
+          <td> String </td>
+          <td> Text that appears on date of holiday</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>&nbsp;</p>
+	</div>
+
+    </body>	
+</html>
